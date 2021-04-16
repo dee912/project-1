@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid rgb(0, 0, 0);
+  width: 800px;
+  height: 800px;
+  flex-wrap: wrap;
+}
+
+.grid div {
+  width: 20%;
+  height: 20%;
+  border: 1px solid rgb(197, 8, 8);
+}
+
+.pacman {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pacman.svg/1200px-Pacman.svg.png);
+  background-size: contain;
+}
+
+.clyde {
+  background-image: url(https://ryanharveyauthor.files.wordpress.com/2018/09/clydeeghost.png?w=640);
+  background-size: contain;
+}
+
+.blinky {
+  background-image: url(https://i.pinimg.com/originals/90/d2/e3/90d2e3ff2856032d36fcc7dc49334191.png);
+  background-size: contain;
+}
+
+.pinky {
+  background-image: url(https://www.pngjoy.com/pngm/879/10343509_pacman-pixel-clyde-pac-man-ghost-transparent-png.png);
+  background-size: contain;
+}
+
+.inky {
+  background-image: url(https://banner2.cleanpng.com/20180204/ujw/kisspng-ms-pac-man-ghosts-pac-man-ghost-png-file-5a77b8bc4159b2.0297583615177955162677.jpg);
+  background-size: contain;
+}
