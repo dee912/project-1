@@ -50,3 +50,13 @@ body {
   background-image: url(https://pngimage.net/wp-content/uploads/2018/06/pacman-ghosts-png-4.png);
   background-size: contain;
 }
+
+.food {
+  background-image: url(https://www.clipartmax.com/png/middle/319-3191580_free-download-ramen-png-clipart-ramen-japanese-cuisine-ramen-clipart-png.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.bloackade {
+  background-color: slategrey;
+}
