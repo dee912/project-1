@@ -4,6 +4,7 @@
 
 const grid = document.querySelector('.grid')
 const startButton = document.querySelector('#start-button')
+const scoreBoard = document.querySelector('#score')
 const width = 18
 const cells = []
 
@@ -12,8 +13,8 @@ const path = document.querySelector('.path')
 const div = document.querySelector('div')
 
 let pacManPos = 19
-let lives = 3
 let score = 0
+scoreBoard.innerHTML = score
 let food = 20
 
 const ghosts = {
@@ -33,8 +34,6 @@ const blocks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
   307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323 ,38, 39, 40, 41, 42, 56, 57, 58, 59, 60, 78, 127, 128, 110, 92, 94, 112, 130, 131, 113, 114, 132, 105, 123, 141, 142, 47, 48, 49, 50, 
   51, 65, 66, 67, 68, 69, 83, 119, 137, 120, 138, 103, 121, 139, 169, 44, 45, 62, 63, 80, 81, 98, 99, 116, 117, 134, 135, 163, 164, 165, 183, 201, 167, 185, 203, 236, 237, 238, 254, 255, 256, 257, 258, 259, 272, 273, 
   274, 275, 276, 277, 174, 192, 210, 178, 177, 176, 194, 212, 247, 248, 249, 262, 263, 264, 265, 266, 267, 280, 281, 282, 283, 284, 285, 69, 172, 205, 206, 207, 208, 223, 224, 225, 226]
-
-
 
 // create cells
 
@@ -97,15 +96,33 @@ startButton.addEventListener('click', () => {
   // }, 1000)
   
   setInterval(() => {
-    if (ghosts.clydePos > ((width ** 2) - (width * 2))) {
+    if (ghosts.clydePos > 147 && ghosts.clydePos !== 79 && ghosts.clydePos !== 97 && ghosts.clydePos !== 115 && ghosts.clydePos !== 133) {
+      cells[ghosts.clydePos].classList.remove('clyde')
+      ghosts.clydePos--
+      cells[ghosts.clydePos].classList.add('clyde')
+
+    } else if (movable.includes(ghosts.clydePos - 18) && ghosts.clydePos !== 43 && ghosts.clydePos !== 61 && ghosts.clydePos !== 79 && ghosts.clydePos !== 97 && ghosts.clydePos !== 115 && ghosts.clydePos !== 133) {
+      cells[ghosts.clydePos].classList.remove('clyde')
+      ghosts.clydePos -= width
+      cells[ghosts.clydePos].classList.add('clyde')
+
+    } else if (ghosts.clydePos > 73 && ghosts.clydePos !== 79 && ghosts.clydePos !== 97 && ghosts.clydePos !== 115 && ghosts.clydePos !== 133) {
+      cells[ghosts.clydePos].classList.remove('clyde')
+      ghosts.clydePos--
+      cells[ghosts.clydePos].classList.add('clyde')
+
+    } else if (ghosts.clydePos < 25) {
       cells[ghosts.clydePos].classList.remove('clyde')
       ghosts.clydePos++
       cells[ghosts.clydePos].classList.add('clyde')
+
+    } else if (movable.includes(ghosts.clydePos + 18)) {
+      cells[ghosts.clydePos].classList.remove('clyde')
+      ghosts.clydePos += width
+      cells[ghosts.clydePos].classList.add('clyde')
     } 
-    if (pacManReset()) {
-      lives--
-    }
-  }, 1000)
+    pacManReset()
+  }, 300)
 
   document.addEventListener('keydown', (e) => {
     
@@ -149,8 +166,16 @@ startButton.addEventListener('click', () => {
     }
 
     pacManReset()
-
-    if (score === 200) {
+    scoreBoard.innerHTML = score
+    if (pacManReset()) {
+      lives--
+    }
+    if (lives === 0) {
+      pacManReset()
+      score === 0
+      alert('Game over!')
+    }
+    if (score === 2000) {
       alert(`You win with a score of: ${score}`)
     }
   })
