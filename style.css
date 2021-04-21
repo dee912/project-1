@@ -23,44 +23,50 @@ body {
 .grid div {
   width: 20%;
   height: 20%;
-  border: 1px solid rgb(197, 8, 8);
+  border: 1px solid rgb(0, 0, 0);
 }
 
 .pacman {
   background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pacman.svg/1200px-Pacman.svg.png);
   background-size: contain;
+  z-index: 1;
 }
 
 .clyde {
   background-image: url(https://ryanharveyauthor.files.wordpress.com/2018/09/clydeeghost.png?w=640);
   background-size: contain;
+  z-index: 1;
 }
 
 .blinky {
   background-image: url(https://www.clipartmax.com/png/middle/93-930142_the-red-ghost-pac-man-red-ghost.png);
   background-size: contain;
+  z-index: 1;
 }
 
 .pinky {
   background-image: url(https://www.pngjoy.com/pngm/879/10343509_pacman-pixel-clyde-pac-man-ghost-transparent-png.png);
   background-size: contain;
+  z-index: 1;
 }
 
 .inky {
   background-image: url(https://pngimage.net/wp-content/uploads/2018/06/pacman-ghosts-png-4.png);
   background-size: contain;
+  z-index: 1;
 }
 
 .path {
-  background-color: rgb(192, 188, 188);
+  background-color: rgb(107, 106, 18);
 }
 
 .wall {
-  background-color: slategrey;
+  background-color: rgb(13, 70, 35);
 }
 
 .food {
   background-image: url(https://pngimg.com/uploads/dot/dot_PNG4.png);
   background-size: 70%;
   background-position: center;
+  z-index: -1;
 }

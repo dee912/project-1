@@ -24,6 +24,8 @@ const ghosts = {
   inkyPos: 171,
 }
 
+const ghostArray = Object.keys(ghosts)
+
 const movable = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 37, 43, 46, 52, 55, 61, 64, 70, 73, 74, 75, 76, 77, 79, 82, 84, 85, 86, 87, 88,
   91, 93, 95, 96, 97, 100, 101, 102, 104, 106, 109, 111, 115, 118, 122, 124, 129, 133, 136, 140, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 
   156, 157, 158, 159, 160, 161, 166, 168, 170, 171, 173, 175, 181, 182, 184, 186, 187, 188, 189, 190, 191, 193, 195, 196, 199, 200, 202, 204, 209, 211, 213, 214,
@@ -58,11 +60,12 @@ cells[food].classList.add('food')
 movable.forEach(walk => {
   cells[walk].classList.add('path')
 })
+
 blocks.forEach(barrier => {
   cells[barrier].classList.add('wall')
 })
 
-console.log(ghosts[1])
+// console.log(ghosts[1])
 
 //create a functions to remove pacman if ghostPos === pacManPos
 
@@ -77,50 +80,76 @@ function pacManReset() {
   }
 }
 
-
 // add event listener to start button to begin game
 // assign controls to pacman and change his position 
 //! movable area is 16 x 16 accounting for boarder
 //! use 'keydown' so pacman can move continuously 
 
-console.log(cells.path)
-
 startButton.addEventListener('click', () => {
-// console.log(ghosts.clydePos)
-
-  // setInterval(() => {
-  //   if (food < 325) {
-  //     food++
-  //     cells[food].classList.add('food')
-  //   }
-  // }, 1000)
   
+  const ghostDirection = [-1, +1, width, -width]
+  
+  // for (let i = 0; i < ghostDirection.length; i++) {
+  //   console.log(ghostDirection[i])
+  // }
+
   setInterval(() => {
-    if (ghosts.clydePos > 147 && ghosts.clydePos !== 79 && ghosts.clydePos !== 97 && ghosts.clydePos !== 115 && ghosts.clydePos !== 133) {
-      cells[ghosts.clydePos].classList.remove('clyde')
-      ghosts.clydePos--
-      cells[ghosts.clydePos].classList.add('clyde')
 
-    } else if (movable.includes(ghosts.clydePos - 18) && ghosts.clydePos !== 43 && ghosts.clydePos !== 61 && ghosts.clydePos !== 79 && ghosts.clydePos !== 97 && ghosts.clydePos !== 115 && ghosts.clydePos !== 133) {
-      cells[ghosts.clydePos].classList.remove('clyde')
-      ghosts.clydePos -= width
-      cells[ghosts.clydePos].classList.add('clyde')
+    //set interval(
+    //      while you haven't found a valid move
+    //      keep picking random moves until you find one.
+    //      remove the ghost class
+    //      change the ghost position
+    //      add the ghost class
+    //      reset pacman
+    //) every second
+    let clydeMove = null
+    let blinkyMove = null
+    let inkyMove = null
+    let pinkyMove = null
 
-    } else if (ghosts.clydePos > 73 && ghosts.clydePos !== 79 && ghosts.clydePos !== 97 && ghosts.clydePos !== 115 && ghosts.clydePos !== 133) {
+    while (!clydeMove) {
+      clydeMove = ghostDirection[Math.floor(Math.random() * ghostDirection.length)]
+      console.log(clydeMove)
+    }
+    while (!blinkyMove) {
+      blinkyMove = ghostDirection[Math.floor(Math.random() * ghostDirection.length)]
+      console.log(blinkyMove)
+    }
+    while (!inkyMove) {
+      inkyMove = ghostDirection[Math.floor(Math.random() * ghostDirection.length)]
+      console.log(inkyMove)
+    }
+    while (!pinkyMove) {
+      pinkyMove = ghostDirection[Math.floor(Math.random() * ghostDirection.length)]
+      console.log(pinkyMove)
+    }
+    
+    if (movable.includes(ghosts.clydePos + clydeMove)) {
       cells[ghosts.clydePos].classList.remove('clyde')
-      ghosts.clydePos--
-      cells[ghosts.clydePos].classList.add('clyde')
-
-    } else if (ghosts.clydePos < 25) {
-      cells[ghosts.clydePos].classList.remove('clyde')
-      ghosts.clydePos++
-      cells[ghosts.clydePos].classList.add('clyde')
-
-    } else if (movable.includes(ghosts.clydePos + 18)) {
-      cells[ghosts.clydePos].classList.remove('clyde')
-      ghosts.clydePos += width
-      cells[ghosts.clydePos].classList.add('clyde')
-    } 
+      ghosts.clydePos += clydeMove
+      // console.log(ghosts.clydePos)
+      cells[ghosts.clydePos].classList.add('clyde') 
+    }
+    if (movable.includes(ghosts.blinkyPos + blinkyMove)) {
+      cells[ghosts.blinkyPos].classList.remove('blinky')
+      ghosts.blinkyPos += blinkyMove
+      // console.log(ghosts.clydePos)
+      cells[ghosts.blinkyPos].classList.add('blinky') 
+    }
+    if (movable.includes(ghosts.inkyPos + inkyMove)) {
+      cells[ghosts.inkyPos].classList.remove('inky')
+      ghosts.inkyPos += inkyMove
+      // console.log(ghosts.clydePos)
+      cells[ghosts.inkyPos].classList.add('inky') 
+    }
+    if (movable.includes(ghosts.pinkyPos + pinkyMove)) {
+      cells[ghosts.pinkyPos].classList.remove('pinky')
+      ghosts.pinkyPos += pinkyMove
+      // console.log(ghosts.clydePos)
+      cells[ghosts.pinkyPos].classList.add('pinky') 
+    }
+    
     pacManReset()
   }, 300)
 
@@ -129,11 +158,11 @@ startButton.addEventListener('click', () => {
     const randomIndex = Math.floor(Math.random() * width ** 2 - 1)
     //pacman contorls
     const key = e.key
-    if (key === 's' && movable.includes(pacManPos + 18)) { 
+    if (key === 's' && movable.includes(pacManPos + width)) { 
       cells[pacManPos].classList.remove('pacman')
       pacManPos += width
       cells[pacManPos].classList.add('pacman')
-    } else if (key === 'w' && movable.includes(pacManPos - 18)) {
+    } else if (key === 'w' && movable.includes(pacManPos - width)) {
       cells[pacManPos].classList.remove('pacman')
       pacManPos -= width
       cells[pacManPos].classList.add('pacman')
@@ -167,17 +196,7 @@ startButton.addEventListener('click', () => {
 
     pacManReset()
     scoreBoard.innerHTML = score
-    if (pacManReset()) {
-      lives--
-    }
-    if (lives === 0) {
-      pacManReset()
-      score === 0
-      alert('Game over!')
-    }
-    if (score === 2000) {
-      alert(`You win with a score of: ${score}`)
-    }
+    
   })
 
 })
