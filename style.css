@@ -114,7 +114,7 @@ body {
 body::before, body::after {
   display: inline-block;
   content: '';
-  margin-top: 44px;
+  margin-top: 41px;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
