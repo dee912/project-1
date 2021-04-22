@@ -7,24 +7,26 @@ const startButton = document.querySelector('#start-button')
 const resetButton = document.querySelector('#reset-button')
 const scoreBoard = document.querySelector('#score')
 const livesLeft = document.querySelector('#lives')
-const div = document.querySelector('div')
+// const div = document.querySelector('div')
+// const splash = document.querySelector('.splash')
+const audioPlayer = document.querySelector('audio')
 const width = 18
 const cells = []
 
-let pacManPos = 19
+let gokuPos = 19
 let score = 0
 scoreBoard.innerHTML = score
 let lives = 0
+livesLeft.innerHTML = lives
 
 
-
-let food = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 37, 43, 46, 52, 55, 61, 64, 70, 73, 74, 75, 76, 77, 79, 82, 84, 85, 86, 87, 88,
+const food = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 37, 43, 46, 52, 55, 61, 64, 70, 73, 74, 75, 76, 77, 79, 82, 84, 85, 86, 87, 88,
   91, 93, 95, 96, 97, 100, 101, 102, 104, 106, 109, 111, 115, 118, 122, 124, 129, 133, 136, 140, 144, 145, 146, 147, 148, 149, 150, 151, 154, 155, 
   156, 157, 158, 159, 160, 166, 168, 173, 175, 182, 184, 186, 187, 188, 189, 190, 191, 193, 196, 199, 200, 202, 204, 209, 211, 213, 214,
   217, 218, 219, 220, 221, 222, 227, 228, 229, 230, 231, 232, 235, 239, 240, 241, 242, 243, 244, 245, 246, 250, 253, 261, 268, 271, 278, 279, 286,
   290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303]
 
-let dragonBalls = [34, 161, 181, 195, 260, 289, 304]
+const dragonBalls = [34, 161, 181, 195, 260, 289, 304]
 
 const ghosts = {
   clydePos: 152,
@@ -32,8 +34,6 @@ const ghosts = {
   pinkyPos: 170,
   inkyPos: 171,
 }
-
-const ghostArray = Object.keys(ghosts)
 
 const movable = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 37, 43, 46, 52, 55, 61, 64, 70, 73, 74, 75, 76, 77, 79, 82, 84, 85, 86, 87, 88,
   91, 93, 95, 96, 97, 100, 101, 102, 104, 106, 109, 111, 115, 118, 122, 124, 129, 133, 136, 140, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 
@@ -57,15 +57,7 @@ for (let i = 0; i < width ** 2; i++) {
   cells.push(div)
 }
 
-// add classes from css to pacman, ghosts and food
-
-
-// function foodEaten() {
-//   if (div.classList.contains('food')){
-//     score++
-//   }
-// }
-
+// add classes from css
 
 movable.forEach(walk => {
   cells[walk].classList.add('path')
@@ -83,29 +75,61 @@ blocks.forEach(barrier => {
   cells[barrier].classList.add('wall')
 })
 
-cells[pacManPos].classList.add('pacman')
+cells[gokuPos].classList.add('pacman')
 cells[ghosts.clydePos].classList.add('clyde')
 cells[ghosts.blinkyPos].classList.add('blinky')
 cells[ghosts.pinkyPos].classList.add('pinky')
 cells[ghosts.inkyPos].classList.add('inky')
-// console.log(ghosts[1])
 
-//create a functions to remove pacman if ghostPos === pacManPos
+//create a functions to remove pacman if ghostPos === gokuPos
 
 function pacManReset() {
-  if (pacManPos === ghosts.clydePos || 
-    pacManPos === ghosts.blinkyPos || 
-    pacManPos === ghosts.pinkyPos || 
-    pacManPos === ghosts.inkyPos) {
-    cells[pacManPos].classList.remove('pacman')
-    pacManPos = 19
+  if (!cellReset() && !freezaReset() && !buuReset() && !brolyReset() && gokuPos === ghosts.clydePos || 
+    gokuPos === ghosts.blinkyPos || 
+    gokuPos === ghosts.pinkyPos || 
+    gokuPos === ghosts.inkyPos) {
+    cells[gokuPos].classList.remove('pacman')
+    gokuPos = 19
     lives--
-    cells[pacManPos].classList.add('pacman')
+    cells[gokuPos].classList.add('pacman')
   }
 }
 
+
+function cellReset() {
+  if (gokuPos === ghosts.clydePos) {
+    cells[ghosts.clydePos].classList.remove('clyde')
+    ghosts.clydePos = 152
+    score += 10
+    cells[ghosts.clydePos].classList.add('clyde')
+  }
+}
+function freezaReset() {
+  if (gokuPos === ghosts.blinkyPos) {
+    cells[ghosts.blinkyPos].classList.remove('blinky')
+    ghosts.blinkyPos = 153
+    cells[ghosts.blinkyPos].classList.add('blinky')
+  }
+}
+function buuReset() {
+  if (gokuPos === ghosts.pinkyPos) {
+    cells[ghosts.pinkyPos].classList.remove('pinky')
+    ghosts.pinkyPos = 170
+    cells[ghosts.pinkyPos].classList.add('pinky')
+  }
+}
+function brolyReset() {
+  if (gokuPos === ghosts.inkyPos) {
+    cells[ghosts.inkyPos].classList.remove('inky')
+    ghosts.inkyPos = 171
+    cells[ghosts.inkyPos].classList.add('inky')
+  }
+}
+
+// console.log(food.includes('food'))
+
 function complete() {
-  if (score === 146) {
+  if (score === 176) {
     alert(`Congrats, you win with a score of: ${score}`)
     restart()
   }
@@ -118,17 +142,23 @@ function gameOver() {
   }
 }
 
+// document.addEventListener('click', () => {
+//   splash.classList.add('display-none')
+// })
 
 // add event listener to start button to begin game
 // assign controls to pacman and change his position 
-//! movable area is 16 x 16 accounting for boarder
-//! use 'keydown' so pacman can move continuously 
 
 startButton.addEventListener('click', () => {
+
   lives = 3
-  // livesLeft.innerHTML = lives
+  
+  startButton.disabled = true
 
   const ghostDirection = [-1, +1, width, -width]
+
+  audioPlayer.src = 'background.mp3'
+  audioPlayer.play()
 
   setInterval(() => {
 
@@ -137,6 +167,7 @@ startButton.addEventListener('click', () => {
     let inkyMove = null
     let pinkyMove = null
 
+    //random movements
     while (!clydeMove) {
       clydeMove = ghostDirection[Math.floor(Math.random() * ghostDirection.length)]
       console.log(clydeMove)
@@ -182,51 +213,68 @@ startButton.addEventListener('click', () => {
     pacManReset()
   }, 300)
 
+  // console.log(dragonBalls.values)
+
+  setInterval(() => {
+    if (dragonBalls.includes(gokuPos)) {
+      cellReset()
+      freezaReset()
+      buuReset()
+      brolyReset()
+    }
+  }, 10000)
+
   document.addEventListener('keydown', (e) => {
     livesLeft.innerHTML = lives
     //pacman contorls
     const key = e.key
-    if (key === 's' && movable.includes(pacManPos + width)) { 
-      cells[pacManPos].classList.remove('pacman')
-      pacManPos += width
-      cells[pacManPos].classList.add('pacman')
-    } else if (key === 'w' && movable.includes(pacManPos - width)) {
-      cells[pacManPos].classList.remove('pacman')
-      pacManPos -= width
-      cells[pacManPos].classList.add('pacman')
-    } else if (key === 'd' && movable.includes(pacManPos + 1) || key === 'd' && pacManPos === 161) {
-      cells[pacManPos].classList.remove('pacman')
-      pacManPos++
-      cells[pacManPos].classList.add('pacman')
-    } else if (key === 'a' && movable.includes(pacManPos - 1) || key === 'a' && pacManPos === 144) {
-      cells[pacManPos].classList.remove('pacman')
-      pacManPos--
-      cells[pacManPos].classList.add('pacman')
+    if (key === 's' && movable.includes(gokuPos + width)) { 
+      cells[gokuPos].classList.remove('pacman')
+      gokuPos += width
+      cells[gokuPos].classList.add('pacman')
+    } else if (key === 'w' && movable.includes(gokuPos - width)) {
+      cells[gokuPos].classList.remove('pacman')
+      gokuPos -= width
+      cells[gokuPos].classList.add('pacman')
+    } else if (key === 'd' && movable.includes(gokuPos + 1) || key === 'd' && gokuPos === 161) {
+      cells[gokuPos].classList.remove('pacman')
+      gokuPos++
+      cells[gokuPos].classList.add('pacman')
+    } else if (key === 'a' && movable.includes(gokuPos - 1) || key === 'a' && gokuPos === 144) {
+      cells[gokuPos].classList.remove('pacman')
+      gokuPos--
+      cells[gokuPos].classList.add('pacman')
     }
     //tunnel at centre of the map
-    if (pacManPos === 162) {
-      cells[pacManPos].classList.remove('pacman')
-      pacManPos = 144
-      cells[pacManPos].classList.add('pacman')
-    } else if (pacManPos === 143) {
-      cells[pacManPos].classList.remove('pacman')
-      pacManPos = 161
-      cells[pacManPos].classList.add('pacman')
+    if (gokuPos === 162) {
+      cells[gokuPos].classList.remove('pacman')
+      gokuPos = 144
+      cells[gokuPos].classList.add('pacman')
+    } else if (gokuPos === 143) {
+      cells[gokuPos].classList.remove('pacman')
+      gokuPos = 161
+      cells[gokuPos].classList.add('pacman')
     }
     //food rules
     food.forEach(item => {
-      if (pacManPos === item) {
+      if (gokuPos === item) {
         cells[item].classList.remove('food')
-        score++
-      }
+        scoreBoard.innerHTML = (score += 1)
+      } 
     })
-    
+
+    dragonBalls.forEach(item => {
+      if (gokuPos === item) {
+        cells[item].classList.remove('dragonballs')
+        score += 5
+      }
+    }) 
+
     complete()
     pacManReset()
     scoreBoard.innerHTML = score
     gameOver()
   })
-
 })
 
 function restart() {
