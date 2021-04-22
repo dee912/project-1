@@ -15,17 +15,25 @@
 </head>
 <body>
   
-  <!-- <div class="splash">
-    <h1 class="fade-in">Welcome to DBZ-MAN</h1>
+  <div class="splash">
+    <img id="logo" class="fade-in"src="logo.png" alt="">
     <h2 class="fade-in">Here are the controls:</h2>
-    <img class="fade-in" src="https://toppng.com/public/uploads/thumbnail/wasd-keys-png-wasd-keys-11562858827zsffwllohq.png" alt="Game controls">
-  </div> -->
+    <img id="controls" class="fade-in" src="https://www.pngkey.com/png/full/711-7117679_wasd.png" alt="Game controls">
+    <h2 class="fade-in">W: ↑ S: ↓ A: ← D: →</h2>
+    <h4 class="fade-in">Click anwhere to continue</h4>
+  </div>
 
-  <div id = "score"></div>
-  <div id = "lives"></div>
+  <div id = stats>
+    <div id = "score"></div>
+    <div id = "lives"></div>
+  </div>
+  
   <div class="grid"></div>
-  <button id = 'start-button'>Start</button> 
-  <button id = 'reset-button'>Restart</button>
+  <div id = "buttons">
+    <button id = 'start-button'>Start</button> 
+    <button id = 'reset-button'>Restart</button>
+  </div>
+  <button id = 'audio-button'>Music ON/OFF</button>
   <audio src=""></audio>
 </body>
 </html>

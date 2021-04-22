@@ -8,14 +8,15 @@ const resetButton = document.querySelector('#reset-button')
 const scoreBoard = document.querySelector('#score')
 const livesLeft = document.querySelector('#lives')
 // const div = document.querySelector('div')
-// const splash = document.querySelector('.splash')
+const splash = document.querySelector('.splash')
 const audioPlayer = document.querySelector('audio')
+const music = document.querySelector('#audio-button')
 const width = 18
 const cells = []
 
 let gokuPos = 19
 let score = 0
-scoreBoard.innerHTML = score
+scoreBoard.innerHTML = `${score} pts`
 let lives = 0
 livesLeft.innerHTML = lives
 
@@ -142,23 +143,28 @@ function gameOver() {
   }
 }
 
-// document.addEventListener('click', () => {
-//   splash.classList.add('display-none')
-// })
+document.addEventListener('click', () => {
+  splash.classList.add('display-none')
+})
+
 
 // add event listener to start button to begin game
 // assign controls to pacman and change his position 
 
 startButton.addEventListener('click', () => {
 
+  music.addEventListener('click', () => {
+    const on = false
+    audioPlayer.src = 'background.mp3'
+    audioPlayer.play()
+  })
+
+
   lives = 3
   
   startButton.disabled = true
 
   const ghostDirection = [-1, +1, width, -width]
-
-  audioPlayer.src = 'background.mp3'
-  audioPlayer.play()
 
   setInterval(() => {
 
