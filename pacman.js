@@ -4,18 +4,27 @@
 
 const grid = document.querySelector('.grid')
 const startButton = document.querySelector('#start-button')
+const resetButton = document.querySelector('#reset-button')
 const scoreBoard = document.querySelector('#score')
+const livesLeft = document.querySelector('#lives')
+const div = document.querySelector('div')
 const width = 18
 const cells = []
-
-const wall = document.querySelector('.wall')
-const path = document.querySelector('.path')
-const div = document.querySelector('div')
 
 let pacManPos = 19
 let score = 0
 scoreBoard.innerHTML = score
-let food = 20
+let lives = 0
+
+
+
+let food = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 37, 43, 46, 52, 55, 61, 64, 70, 73, 74, 75, 76, 77, 79, 82, 84, 85, 86, 87, 88,
+  91, 93, 95, 96, 97, 100, 101, 102, 104, 106, 109, 111, 115, 118, 122, 124, 129, 133, 136, 140, 144, 145, 146, 147, 148, 149, 150, 151, 154, 155, 
+  156, 157, 158, 159, 160, 166, 168, 173, 175, 182, 184, 186, 187, 188, 189, 190, 191, 193, 196, 199, 200, 202, 204, 209, 211, 213, 214,
+  217, 218, 219, 220, 221, 222, 227, 228, 229, 230, 231, 232, 235, 239, 240, 241, 242, 243, 244, 245, 246, 250, 253, 261, 268, 271, 278, 279, 286,
+  290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303]
+
+let dragonBalls = [34, 161, 181, 195, 260, 289, 304]
 
 const ghosts = {
   clydePos: 152,
@@ -42,7 +51,7 @@ const blocks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
 for (let i = 0; i < width ** 2; i++) {
   const div = document.createElement('div')
   grid.appendChild(div)
-  div.innerHTML = i
+  // div.innerHTML = i
   div.style.width = `${100 / width}%`
   div.style.height = `${100 / width}%`
   cells.push(div)
@@ -50,21 +59,35 @@ for (let i = 0; i < width ** 2; i++) {
 
 // add classes from css to pacman, ghosts and food
 
-cells[pacManPos].classList.add('pacman')
-cells[ghosts.clydePos].classList.add('clyde')
-cells[ghosts.blinkyPos].classList.add('blinky')
-cells[ghosts.pinkyPos].classList.add('pinky')
-cells[ghosts.inkyPos].classList.add('inky')
-cells[food].classList.add('food')
+
+// function foodEaten() {
+//   if (div.classList.contains('food')){
+//     score++
+//   }
+// }
+
 
 movable.forEach(walk => {
   cells[walk].classList.add('path')
+})
+
+food.forEach(item => {
+  cells[item].classList.add('food')
+})
+
+dragonBalls.forEach(ball => {
+  cells[ball].classList.add('dragonballs')
 })
 
 blocks.forEach(barrier => {
   cells[barrier].classList.add('wall')
 })
 
+cells[pacManPos].classList.add('pacman')
+cells[ghosts.clydePos].classList.add('clyde')
+cells[ghosts.blinkyPos].classList.add('blinky')
+cells[ghosts.pinkyPos].classList.add('pinky')
+cells[ghosts.inkyPos].classList.add('inky')
 // console.log(ghosts[1])
 
 //create a functions to remove pacman if ghostPos === pacManPos
@@ -76,9 +99,25 @@ function pacManReset() {
     pacManPos === ghosts.inkyPos) {
     cells[pacManPos].classList.remove('pacman')
     pacManPos = 19
+    lives--
     cells[pacManPos].classList.add('pacman')
   }
 }
+
+function complete() {
+  if (score === 146) {
+    alert(`Congrats, you win with a score of: ${score}`)
+    restart()
+  }
+}
+
+function gameOver() {
+  if (lives === 0) {
+    alert('Game over 🤭')
+    restart()
+  }
+}
+
 
 // add event listener to start button to begin game
 // assign controls to pacman and change his position 
@@ -86,23 +125,13 @@ function pacManReset() {
 //! use 'keydown' so pacman can move continuously 
 
 startButton.addEventListener('click', () => {
-  
+  lives = 3
+  // livesLeft.innerHTML = lives
+
   const ghostDirection = [-1, +1, width, -width]
-  
-  // for (let i = 0; i < ghostDirection.length; i++) {
-  //   console.log(ghostDirection[i])
-  // }
 
   setInterval(() => {
 
-    //set interval(
-    //      while you haven't found a valid move
-    //      keep picking random moves until you find one.
-    //      remove the ghost class
-    //      change the ghost position
-    //      add the ghost class
-    //      reset pacman
-    //) every second
     let clydeMove = null
     let blinkyMove = null
     let inkyMove = null
@@ -154,8 +183,7 @@ startButton.addEventListener('click', () => {
   }, 300)
 
   document.addEventListener('keydown', (e) => {
-    
-    const randomIndex = Math.floor(Math.random() * width ** 2 - 1)
+    livesLeft.innerHTML = lives
     //pacman contorls
     const key = e.key
     if (key === 's' && movable.includes(pacManPos + width)) { 
@@ -166,11 +194,11 @@ startButton.addEventListener('click', () => {
       cells[pacManPos].classList.remove('pacman')
       pacManPos -= width
       cells[pacManPos].classList.add('pacman')
-    } else if (key === 'd' && movable.includes(pacManPos + 1)) {
+    } else if (key === 'd' && movable.includes(pacManPos + 1) || key === 'd' && pacManPos === 161) {
       cells[pacManPos].classList.remove('pacman')
       pacManPos++
       cells[pacManPos].classList.add('pacman')
-    } else if (key === 'a' && movable.includes(pacManPos - 1)) {
+    } else if (key === 'a' && movable.includes(pacManPos - 1) || key === 'a' && pacManPos === 144) {
       cells[pacManPos].classList.remove('pacman')
       pacManPos--
       cells[pacManPos].classList.add('pacman')
@@ -186,19 +214,27 @@ startButton.addEventListener('click', () => {
       cells[pacManPos].classList.add('pacman')
     }
     //food rules
-
-    if (pacManPos === food) {
-      cells[food].classList.remove('food')
-      food = randomIndex
-      cells[food].classList.add('food')
-      score += 100
-    }
-
+    food.forEach(item => {
+      if (pacManPos === item) {
+        cells[item].classList.remove('food')
+        score++
+      }
+    })
+    
+    complete()
     pacManReset()
     scoreBoard.innerHTML = score
-    
+    gameOver()
   })
 
+})
+
+function restart() {
+  document.location.href = ''
+}
+
+resetButton.addEventListener('click', () => {
+  restart()
 })
 
 

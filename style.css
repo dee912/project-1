@@ -1,8 +1,12 @@
 * {
   box-sizing: border-box;
+  position: relative;
+  z-index: 0;
 }
 
 body {
+  background: url(https://i.pinimg.com/originals/43/c9/65/43c9653e3a717d4a80a0551ebec6c978.png);
+  background-size: cover;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -14,7 +18,8 @@ body {
 .grid {
   display: flex;
   flex-direction: row;
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(253, 2, 2);
+  border-width: 0px;
   width: 800px;
   height: 800px;
   flex-wrap: wrap;
@@ -23,50 +28,123 @@ body {
 .grid div {
   width: 20%;
   height: 20%;
-  border: 1px solid rgb(0, 0, 0);
+  /* border: 1px solid rgb(0, 0, 0); */
+}
+
+#score {
+  margin-bottom: 30px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-size: 35px;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  border: 5px solid orange;
+}
+
+#lives {
+  margin-bottom: 30px;
+  background-color: black;
+  align-items: flex-end;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  border: 5px solid rgb(255, 0, 0);
+}
+
+body::before, body::after {
+  display: inline-block;
+  content: '';
+  margin-top: 96px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: linear-gradient(45deg, #ff6600, #ff000085, #000000, #ff6600, #ff000085, #000000, #ff000085, #ff0000, #000000);
+  background-size: 400%;
+  width: 802px;
+  height: 802px;
+  z-index: -1;
+  animation: animate 60s linear infinite;
+}
+
+body::after {
+  filter: blur(50px);
+}
+
+  @keyframes animate {
+    0%{
+      background-position: 0 0;
+    }
+    50%{
+      background-position: 400% 0;
+    }
+    100%{
+      background-position: 0 0;
+    }
+  }
+
+.food {
+  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/84dc13b7-a2e7-4b45-83ec-311e72e82900/dcjzw04-c25a75ea-62b5-4b44-ae6f-e89da9f0c39c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvODRkYzEzYjctYTJlNy00YjQ1LTgzZWMtMzExZTcyZTgyOTAwXC9kY2p6dzA0LWMyNWE3NWVhLTYyYjUtNGI0NC1hZTZmLWU4OWRhOWYwYzM5Yy5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.MD-nGxQIwmac35RYJlVMbBPhTOCCUkoLsocpc0ud2gw);
+  background-size: cover;
+  background-position: center;
+}
+
+.dragonballs {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Dragonball_%284-Star%29.svg/1200px-Dragonball_%284-Star%29.svg.png);
+  background-size: cover;
+  background-position: center;
 }
 
 .pacman {
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pacman.svg/1200px-Pacman.svg.png);
-  background-size: contain;
-  z-index: 1;
+  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5c7f5e56-99ba-4690-bb82-862ceaaaf25e/d4jrskn-fe727634-41a9-4fc7-97c5-c910a9bc8ffc.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvNWM3ZjVlNTYtOTliYS00NjkwLWJiODItODYyY2VhYWFmMjVlXC9kNGpyc2tuLWZlNzI3NjM0LTQxYTktNGZjNy05N2M1LWM5MTBhOWJjOGZmYy5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.Ul9ZLMBf5SrhAm8O80Q3DYifCq5CCF22iRSGJ9bjoHg);
+  background-size: cover;
+  /* position: relative;
+  transform: translate(0%, 0%);
+  width: calc(408 / 8);
+  height: 80px;
+  background: url(goku_run.png);
+  animation: move 1s steps(8) infinite; */
 }
 
+/* @keyframes move {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: -422px;
+  }
+} */
+
 .clyde {
-  background-image: url(https://ryanharveyauthor.files.wordpress.com/2018/09/clydeeghost.png?w=640);
-  background-size: contain;
-  z-index: 1;
+  background-image: url(https://lh3.googleusercontent.com/proxy/GyOL0uzIfoOPX3rKif970R4ZX_DZpwko_W5GFgf465Z4j1F74jdUvDamEfG54HD3ojyEBpfI2wE7RttBK24_CA6vT2DiCJhP);
+  background-size: 90%;
 }
 
 .blinky {
-  background-image: url(https://www.clipartmax.com/png/middle/93-930142_the-red-ghost-pac-man-red-ghost.png);
-  background-size: contain;
-  z-index: 1;
+  background-image: url(https://lh3.googleusercontent.com/proxy/VOnE3x1iRDAcWpmvJeCFGskZTfTnDQhgoOMC5k1wFOKlXLGHbXFZwSMx8vna46Y9urPUjaEmrNZdDbcUK6GyEZkWMbX838Gg);
+  background-size: 95%;
 }
 
 .pinky {
-  background-image: url(https://www.pngjoy.com/pngm/879/10343509_pacman-pixel-clyde-pac-man-ghost-transparent-png.png);
-  background-size: contain;
-  z-index: 1;
+  background-image: url(https://lh3.googleusercontent.com/proxy/BQ7YB7O38O6QOaSQFHQvSucNGUtwxQrOoQoxioM8AACiu4RRLLQ3eBFusJ2NQK59HQUCnmHhxgxN5w8vhzDaJN9IEdQuLlo2);
+  background-size: cover;
 }
 
 .inky {
-  background-image: url(https://pngimage.net/wp-content/uploads/2018/06/pacman-ghosts-png-4.png);
-  background-size: contain;
-  z-index: 1;
+  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c38e302a-fbf8-4f08-9ee3-5b7bade87dd5/dbz7x09-4c9a0152-d668-4232-a8a7-1249546e884a.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYzM4ZTMwMmEtZmJmOC00ZjA4LTllZTMtNWI3YmFkZTg3ZGQ1XC9kYno3eDA5LTRjOWEwMTUyLWQ2NjgtNDIzMi1hOGE3LTEyNDk1NDZlODg0YS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.Wbo29EwogtYjODIv87x7gGVAiWqglWKIdglR82fo7mg);
+  background-size: 100%;
 }
 
 .path {
-  background-color: rgb(107, 106, 18);
+  background-color: rgba(83, 109, 117, 0.9);
 }
 
 .wall {
-  background-color: rgb(13, 70, 35);
+  background-color: rgba(255, 115, 0, 0.8);
 }
 
-.food {
-  background-image: url(https://pngimg.com/uploads/dot/dot_PNG4.png);
-  background-size: 70%;
-  background-position: center;
-  z-index: -1;
-}
