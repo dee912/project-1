@@ -7,7 +7,6 @@ const startButton = document.querySelector('#start-button')
 const resetButton = document.querySelector('#reset-button')
 const scoreBoard = document.querySelector('#score')
 const livesLeft = document.querySelector('#lives')
-// const div = document.querySelector('div')
 const splash = document.querySelector('.splash')
 const audioPlayer = document.querySelector('audio')
 const music = document.querySelector('#audio-button')
@@ -104,6 +103,7 @@ function cellReset() {
     cells[ghosts.clydePos].classList.add('clyde')
   }
 }
+
 function freezaReset() {
   if (gokuPos === ghosts.blinkyPos) {
     cells[ghosts.blinkyPos].classList.remove('blinky')
@@ -111,6 +111,7 @@ function freezaReset() {
     cells[ghosts.blinkyPos].classList.add('blinky')
   }
 }
+
 function buuReset() {
   if (gokuPos === ghosts.pinkyPos) {
     cells[ghosts.pinkyPos].classList.remove('pinky')
@@ -118,6 +119,7 @@ function buuReset() {
     cells[ghosts.pinkyPos].classList.add('pinky')
   }
 }
+
 function brolyReset() {
   if (gokuPos === ghosts.inkyPos) {
     cells[ghosts.inkyPos].classList.remove('inky')
@@ -193,32 +195,26 @@ startButton.addEventListener('click', () => {
     if (movable.includes(ghosts.clydePos + clydeMove)) {
       cells[ghosts.clydePos].classList.remove('clyde')
       ghosts.clydePos += clydeMove
-      // console.log(ghosts.clydePos)
       cells[ghosts.clydePos].classList.add('clyde') 
     }
     if (movable.includes(ghosts.blinkyPos + blinkyMove)) {
       cells[ghosts.blinkyPos].classList.remove('blinky')
       ghosts.blinkyPos += blinkyMove
-      // console.log(ghosts.clydePos)
       cells[ghosts.blinkyPos].classList.add('blinky') 
     }
     if (movable.includes(ghosts.inkyPos + inkyMove)) {
       cells[ghosts.inkyPos].classList.remove('inky')
       ghosts.inkyPos += inkyMove
-      // console.log(ghosts.clydePos)
       cells[ghosts.inkyPos].classList.add('inky') 
     }
     if (movable.includes(ghosts.pinkyPos + pinkyMove)) {
       cells[ghosts.pinkyPos].classList.remove('pinky')
       ghosts.pinkyPos += pinkyMove
-      // console.log(ghosts.clydePos)
       cells[ghosts.pinkyPos].classList.add('pinky') 
     }
     
     pacManReset()
   }, 300)
-
-  // console.log(dragonBalls.values)
 
   setInterval(() => {
     if (dragonBalls.includes(gokuPos)) {
@@ -231,7 +227,9 @@ startButton.addEventListener('click', () => {
 
   document.addEventListener('keydown', (e) => {
     livesLeft.innerHTML = lives
-    //pacman contorls
+
+    //pacman controls
+
     const key = e.key
     if (key === 's' && movable.includes(gokuPos + width)) { 
       cells[gokuPos].classList.remove('pacman')

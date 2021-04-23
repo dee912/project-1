@@ -81,7 +81,6 @@ body {
 .grid div {
   width: 20%;
   height: 20%;
-  /* border: 1px solid rgb(0, 0, 0); */
 }
 
 #score {
@@ -161,22 +160,7 @@ body::after {
 .pacman {
   background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5c7f5e56-99ba-4690-bb82-862ceaaaf25e/d4jrskn-fe727634-41a9-4fc7-97c5-c910a9bc8ffc.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvNWM3ZjVlNTYtOTliYS00NjkwLWJiODItODYyY2VhYWFmMjVlXC9kNGpyc2tuLWZlNzI3NjM0LTQxYTktNGZjNy05N2M1LWM5MTBhOWJjOGZmYy5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.Ul9ZLMBf5SrhAm8O80Q3DYifCq5CCF22iRSGJ9bjoHg);
   background-size: cover;
-  /* position: relative;
-  transform: translate(0%, 0%);
-  width: calc(408 / 8);
-  height: 80px;
-  background: url(goku_run.png);
-  animation: move 1s steps(8) infinite; */
 }
-
-/* @keyframes move {
-  from {
-    background-position: 0;
-  }
-  to {
-    background-position: -422px;
-  }
-} */
 
 .clyde {
   background-image: url(https://i.pinimg.com/originals/d9/cc/f6/d9ccf65236d045de00912bc00d67a6d2.png);
