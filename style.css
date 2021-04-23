@@ -21,6 +21,7 @@ body {
   justify-content: center;
   align-items: center;
   position: fixed;
+  font-family: 'Press Start 2P', cursive;
   width: 70%;
   height: 90vh;
   background-color: rgba(58, 74, 219, 0.774);

@@ -96,7 +96,6 @@ function pacManReset() {
   }
 }
 
-
 function cellReset() {
   if (gokuPos === ghosts.clydePos) {
     cells[ghosts.clydePos].classList.remove('clyde')
@@ -138,7 +137,7 @@ function complete() {
 
 function gameOver() {
   if (lives === 0) {
-    alert('Game over 🤭')
+    alert('Game over already? 🤭')
     restart()
   }
 }
@@ -147,18 +146,18 @@ document.addEventListener('click', () => {
   splash.classList.add('display-none')
 })
 
+audioPlayer.src = 'background.mp3'
+
+music.addEventListener('click', () => {
+  if (audioPlayer.paused) {
+    audioPlayer.play()
+  } else audioPlayer.pause()
+})
 
 // add event listener to start button to begin game
 // assign controls to pacman and change his position 
 
 startButton.addEventListener('click', () => {
-
-  music.addEventListener('click', () => {
-    const on = false
-    audioPlayer.src = 'background.mp3'
-    audioPlayer.play()
-  })
-
 
   lives = 3
   
@@ -290,6 +289,3 @@ function restart() {
 resetButton.addEventListener('click', () => {
   restart()
 })
-
-
-
