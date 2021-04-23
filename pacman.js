@@ -128,8 +128,6 @@ function brolyReset() {
   }
 }
 
-// console.log(food.includes('food'))
-
 function complete() {
   if (score === 176) {
     alert(`Congrats, you win with a score of: ${score}`)
@@ -175,6 +173,7 @@ startButton.addEventListener('click', () => {
     let pinkyMove = null
 
     //random movements
+    
     while (!clydeMove) {
       clydeMove = ghostDirection[Math.floor(Math.random() * ghostDirection.length)]
       console.log(clydeMove)
