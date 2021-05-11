@@ -188,15 +188,15 @@ function cellReset() {
 ```
 ## Screenshots
 
-* Before getting the idea of how to move my ghost randomly I was goin to hard code in a path, I was setting the movements here in an array which then sparked the idea for how I got my ghosts to move.
+### Before getting the idea of how to move my ghost randomly I was goin to hard code in a path, I was setting the movements here in an array which then sparked the idea for how I got my ghosts to move.
 ![movement draft](move_draft.png)
-Splash screen
+### Splash screen
 ![instructions](splash.png)
-Start screen
+### Start screen
 ![game start](start.png)
-Win screen
+### Win screen
 ![win](win.png)
-Lose screen
+### Lose screen
 ![lose](lose.png)
 ## Bugs
 #### With this being my first project I was surprised by how bug come about and even as I may blame the code it was always due to minor human errors.
