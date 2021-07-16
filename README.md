@@ -1,12 +1,10 @@
-![ga_cog_large_red_rgb](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png)
-
 # PAC-MAN with added flair
 
 ## Overview
 
 The project here is my first during the Software Engineering Immersive course at GA and my first coding project in general. This assignment was to build a grid-based game using **HTML, CSS and JavaScript**. It was an **individual** project completed within **one week**.
 
-My cohorts and I were given a selection of games to choose from so I decided on the classical and personal favourite, PAC-MAN. I created a rendition of the game in a Dragon Ball Z theme. **I will be referring to characters as in the orginal game** as this is easier to understand.
+My cohorts and I were given a selection of games to choose from so I decided on the classical and personal favourite, PAC-MAN. I created a rendition of the game in a Dragon Ball Z theme. **I will be referring to characters as in the original game** as this is easier to understand.
 
 You can launch the game directly from  [**here!**](https://dee912.github.io/project-1/)
 
@@ -50,9 +48,9 @@ You can launch the game directly from  [**here!**](https://dee912.github.io/proj
     cells.push(div)
   }
   ```
-* Elements such as the wall, path and food were also represnted by hard coded array and classes added using a `forEach` array method, in hindsight this would be my approach now whcih will be discussed further down in the Lessons learned/ Alternative approach section.
+* Elements such as the wall, path and food were also represented by hard coded array and classes added using a `forEach` array method, in hindsight this would be my approach now which will be discussed further down in the Lessons learned/ Alternative approach section.
 
-  * The resaons for this was due to not forseeing future issues I would run into and thinking it to be the fastest way.
+  * The reasons for this was due to not foreseeing future issues I would run into and thinking it to be the fastest way.
 
 ```JavaScript
 movable.forEach(walk => {
@@ -115,7 +113,7 @@ cells[ghosts.clydePos].classList.add('clyde')
 
 ### Collision detection
 
-* Collision detection for PAC-MAN went through a few stages, first all the boarder walls where avoided using a calculation but I soon realsied that once I add in my internal walls the maths functions wouldn't be of any use to them.
+* Collision detection for PAC-MAN went through a few stages, first all the border walls were avoided using a calculation but I soon realised that once I add in my internal walls the maths functions wouldn't be of any use to them.
 * This is where the idea of setting the moveable and blocks arrays above came from. Once they had been set I was able to just plug it into my keydown event listener.
 
 ```JavaScript
@@ -132,8 +130,8 @@ cells[ghosts.clydePos].classList.add('clyde')
     }
 ```
 
-* For the tunnel I hit another bug which was when PAC-MAN walked throught the tunnel on either end he would end up stuck in the wall on the opposite side or he would'nt walk throught at all
-* So to resolve this I made it possible for PAC-MAN to move even thought the next block would be a wall and then just reset his position immidently, this made for a smooth transition that looked as though he was just walking through.
+* For the tunnel I hit another bug which was when PAC-MAN walked through the tunnel on either end he would end up stuck in the wall on the opposite side or he wouldn't walk through at all
+* So to resolve this I made it possible for PAC-MAN to move even though the next block would be a wall and then just reset his position immediately, this made for a smooth transition that looked as though he was just walking through.
 
 ```JavaScript
     //tunnel at centre of the map
@@ -150,8 +148,8 @@ cells[ghosts.clydePos].classList.add('clyde')
 
 ### Power up/ Dragon Balls
 
-* As time was a little short once I got to the power ups I went for an efficent quick way of making them work however not the most condensed way.
-* I went for this approach as I still wanted the function to work but also need to improve other persistent issues. 
+* As time was a little short once I got to the power ups I went for an efficient quick way of making them work however not the most condensed way.
+* I went for this approach as I still wanted the function to work but also needed to improve other persistent issues. 
 
 ```JavaScript
     dragonBalls.forEach(item => {
@@ -173,8 +171,8 @@ function cellReset() {
 }
 ```
 
-* Once I wrote the above function I just called them in the below setInterval. This kept it looking more neat comapred to my setInterval for my ghosts movement which is cluttered.
-* After PAC-MAN ate one of the power ups there will be a 10s period where the ghosts can be eaten adn the score increased by 10pts.
+* Once I wrote the above function I just called them in the below setInterval. This kept it looking more neat compared to my setInterval for my ghosts movement which is cluttered.
+* After PAC-MAN ate one of the power ups there will be a 10s period where the ghosts can be eaten adn the score increased by 10 pts.
 
 ```JavaScript
   setInterval(() => {
@@ -188,7 +186,7 @@ function cellReset() {
 ```
 ## Screenshots
 
-### Before getting the idea of how to move my ghost randomly I was goin to hard code in a path, I was setting the movements here in an array which then sparked the idea for how I got my ghosts to move.
+### Before getting the idea of how to move my ghost randomly I was going to hard code in a path, I was setting the movements here in an array which then sparked the idea for how I got my ghosts to move.
 ![movement draft](move_draft.png)
 ### Splash screen
 ![instructions](splash.png)
@@ -199,35 +197,35 @@ function cellReset() {
 ### Lose screen
 ![lose](lose.png)
 ## Bugs
-#### With this being my first project I was surprised by how bug come about and even as I may blame the code it was always due to minor human errors.
+#### With this being my first project I was surprised by how bugs came about and even as I may blame the code it was always due to minor human errors.
 
 ### Score bug:
 * At present my score will increase simply from keying down.
-* After thinking about it I understand it is because I hard coded my food path in so even if there is no food class since the cell is called food the game will always recognise keying down on those cells means a score increase.
-* Also my end game functions is not as well written as I would have liked it to be and instead kicks of an alert saying the player has won at a score of 176 as this was the amount of food cells I had at the time if writting it.
+* After thinking about it I understand it is because I hard coded my food path so even if there is no food class since the cell is called food the game will always recognise keying down on those cells means a score increase.
+* Also my end game functions are not as well written as I would have liked it to be and instead kicks off an alert saying the player has won at a score of 176 as this was the amount of food cells I had at the time of writing it.
 
 ### Lives bug:
-* Currently my lives display up top only begins to display the live available after the first keydown.
+* Currently my life display up top only begins to display the live available after the first keydown.
 * I realise in hindsight that is due to calling the Lives.innerHTML in the keydown event listener.
 
 ## Lessons learned/ Alternative approaches
 ### Map setup
-* For the map I would look int to instead of hardcoding in each style of path, moveable, food etc., to instead set up the map with an assigned number.
-* A barrier/wall would be labled 1, food would be labled 2 which wouldn't clash with the block and dragonballs would be labled 3.
-* Labling them this was in an array would then allow me to wrap them to form the grid.
+* For the map I would look into instead of hardcoding in each style of path, moveable, food etc., to instead set up the map with an assigned number.
+* A barrier/wall would be labeled 1, food would be labeled 2 which wouldn't clash with the block and dragon balls would be labeled 3.
+* Labeling them this was in an array would then allow me to wrap them to form the grid.
 
 ### Assistance
-* Asking fo rhelp was a big learning curve, it's rather easy to get caught up in you own issue and forget there are Teachers and TAs around to help where needed.
+* Asking for help was a big learning curve, it's rather easy to get caught up in you own issue and forget there are Teachers and TAs around to help where needed.
 * By welcoming help more often I know I could have turned out a much better product and will ask for help where needed in the future.
 
 ## Potential future features
-* New level once the current level has been completer.
+* New level once the current level has been completed.
 * Smart moving ghosts depending on PAC-MAN's position.
-* A working score board.
+* A working scoreboard.
 * Leaderboard included.
 
 ## References
-### Very greatful for the following resources:
+### Very grateful for the following resources:
 
 #### Characters
 * Goku: https://bit.ly/3hjJr1w
