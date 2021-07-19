@@ -14,7 +14,7 @@ You can launch the game directly from  [**here!**](https://dee912.github.io/proj
 * Design logic for winning.
 * Include separate HTML / CSS / JavaScript files.
 * Follow KISS (Keep It Simple Stupid).
-* Use Javascript for DOM manipulation.
+* Use JavaScript for DOM manipulation.
 * Deploy your game online, where the rest of the world can access it.
 * Use semantic markup for HTML and CSS (adhere to best practices).
 
@@ -130,7 +130,7 @@ cells[ghosts.clydePos].classList.add('clyde')
     }
 ```
 
-* For the tunnel I hit another bug which was when PAC-MAN walked through the tunnel on either end he would end up stuck in the wall on the opposite side or he wouldn't walk through at all
+* For the tunnel I hit another bug which was when PAC-MAN walked through the tunnel on either end he would end up stuck in the wall on the opposite side or he wouldn't walk through at all.
 * So to resolve this I made it possible for PAC-MAN to move even though the next block would be a wall and then just reset his position immediately, this made for a smooth transition that looked as though he was just walking through.
 
 ```JavaScript
@@ -172,7 +172,7 @@ function cellReset() {
 ```
 
 * Once I wrote the above function I just called them in the below setInterval. This kept it looking more neat compared to my setInterval for my ghosts movement which is cluttered.
-* After PAC-MAN ate one of the power ups there will be a 10s period where the ghosts can be eaten adn the score increased by 10 pts.
+* After PAC-MAN ate one of the power ups there will be a 10s period where the ghosts can be eaten and the score increased by 10 pts.
 
 ```JavaScript
   setInterval(() => {
@@ -207,6 +207,9 @@ function cellReset() {
 ### Lives bug:
 * Currently my life display up top only begins to display the live available after the first keydown.
 * I realise in hindsight that is due to calling the Lives.innerHTML in the keydown event listener.
+## Wins
+* Getting my ghosts to move randomly was a big achievement for my self.
+* The overall style of the project.
 
 ## Lessons learned/ Alternative approaches
 ### Map setup
@@ -215,7 +218,7 @@ function cellReset() {
 * Labeling them this was in an array would then allow me to wrap them to form the grid.
 
 ### Assistance
-* Asking for help was a big learning curve, it's rather easy to get caught up in you own issue and forget there are Teachers and TAs around to help where needed.
+* Asking for help was a big learning curve, it's rather easy to get caught up in your own issue and forget there are Teachers and TAs around to help where needed.
 * By welcoming help more often I know I could have turned out a much better product and will ask for help where needed in the future.
 
 ## Potential future features
