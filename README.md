@@ -207,9 +207,17 @@ function cellReset() {
 ### Lives bug:
 * Currently my life display up top only begins to display the live available after the first keydown.
 * I realise in hindsight that is due to calling the Lives.innerHTML in the keydown event listener.
+# Wins and challenges
+
 ## Wins
-* Getting my ghosts to move randomly was a big achievement for my self.
+
+* Getting my ghosts to move randomly was a big achievement for myself.
 * The overall style of the project.
+
+## Challenges
+
+* Getting the ghost to move randomly was a challenge for a couple of days.
+* Border detection was an issue, the ghost would be able to move one square into them and then be stuc, since fixed.
 
 ## Lessons learned/ Alternative approaches
 ### Map setup
